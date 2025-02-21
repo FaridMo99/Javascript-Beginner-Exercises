@@ -1,0 +1,266 @@
+
+
+:root {
+    --lightGrey:#1b222c;
+    --darkGrey:#12151c;
+    --crossColor:#531516;
+    --ycircleColor:#CC7722;
+    --superDarkGrey:#191d26;
+    --fontFamily:verdana;
+    --fontColor:white;
+    --hoverScale:scale(1.01);
+    --activeOpacity:0.7;
+    --borderRadius:1vw;
+}
+
+body {
+    margin:0;
+    background:linear-gradient(90deg,var(--darkGrey),var(--superDarkGrey),var(--lightGrey), var(--superDarkGrey), var(--darkGrey));
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+body * {
+    font-family:--fontFamily;
+    color:var(--fontColor);
+}
+
+body>* {
+    width:75%;
+}
+
+p, label {
+    margin:0;
+    font-weight: bold;
+}
+/*main styles*/
+    /*Player*/
+.playerContainer {
+    height: 10vh;
+    position: relative;
+    top: 2vh;
+    border-radius: var(--borderRadius);
+    display: flex;
+    justify-content:center;
+    gap:2vw;
+    align-items:center;
+
+    .player, .computer {
+        background-color: var(--lightGrey);
+        width:30%;
+        height:100%;
+        border-radius: var(--borderRadius);
+        border:2px solid var(--darkGrey);
+        box-shadow:0 0 1px 1px var(--darkGrey);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        &:hover {
+            transform: var(--hoverScale);
+        }
+    }
+
+}
+
+.playerName, .computerName {
+    height: 35%;
+    width: 100%;
+    background-color: var(--superDarkGrey);
+    border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerSymbol, .computerSymbol {
+    height: 65%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+    /*Game*/
+.gameContainer {
+    width: 50vh;
+    height:50vh;
+    background-color: var(--darkGrey);
+    border-radius: var(--borderRadius);
+    display: grid;
+    grid-template-rows:10% 1fr 1fr 1fr 10%;
+    grid-template-columns:10% 1fr 1fr 1fr 10%;
+    gap:1vw;
+    grid-template-areas: 
+    ". . . . ."
+    ". a b c ."
+    ". d e f ."
+    ". g h i ."
+    ". . . . ."
+    ;
+
+    .a, .b, .c, .d, .e, .f, .g, .h, .i {
+        background-color: #fff;
+        border-radius: var(--borderRadius);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            transform:scale(1.03);
+            cursor: pointer;
+        }
+
+        &:active {
+            opacity: var(--activeOpacity);
+        }
+    }
+
+    .a {
+        grid-area: a;
+    }
+
+    .b {
+        grid-area: b;
+    }
+
+    .c {
+        grid-area: c;
+    }
+
+    .d {
+        grid-area: d;
+    }
+
+    .e {
+        grid-area: e;
+    }
+
+    .f {
+        grid-area: f;
+    }
+
+    .g {
+        grid-area: g;
+    }
+
+    .h {
+        grid-area: h;
+    }
+
+    .i {
+        grid-area: i;
+    }
+}
+
+
+    /*Scoreboard*/
+        /*button*/
+.btn {
+    font-weight: bold;
+    width: 4.5rem;
+    height: 2.5rem;
+    background-color: var(--darkGrey);
+    border: 1px solid black;
+    border-radius: var(--borderRadius);
+
+    &:hover {
+        transform: scale(1.03);
+        cursor: pointer;
+        box-shadow: 0 0 2px 2px var(--darkGrey);
+    }
+
+    &:active {
+        opacity: var(--activeOpacity);
+    }
+}
+
+.scoreboard {
+    height: 20vh;
+    background-color: var(--darkGrey);
+    border-radius: var(--borderRadius);
+    border: 1px solid black;
+    box-shadow: 0 0 2px 2px var(--darkGrey);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > div {
+        width:50%;
+        height: 97%;
+        display: flex;
+        flex-direction: column;
+        justify-content:space-around;
+        align-items: center;
+
+        div, p {
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+
+/*form*/
+
+.formContainer {
+    width:100vw;
+    height: 100vh;
+    z-index:1;
+    background-color: rgba(0, 0, 0, 0.938);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    width: 50vw;
+    height:30vh;
+    display: flex;
+    background-color: var(--darkGrey);
+    border-radius: var(--borderRadius);
+    flex-direction: column;
+    align-items: center;
+
+    fieldset {
+        border:none;
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.labeltext, .submit {
+    margin-bottom: 2vh;
+}
+
+input[type="text"] {
+    outline: none;
+    color: black;
+    font-weight: bold;
+}
+
+#symbol {
+    width: 3vw;
+}
