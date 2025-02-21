@@ -113,15 +113,6 @@ p, label {
         justify-content: center;
         align-items: center;
 
-        &:hover {
-            transform:scale(1.03);
-            cursor: pointer;
-        }
-
-        &:active {
-            opacity: var(--activeOpacity);
-        }
-
         img {
             width: 80%;
             height: 80%;
@@ -163,6 +154,18 @@ p, label {
     .i {
         grid-area: i;
     }
+}
+
+.hover {
+    &:hover {
+        transform:scale(1.03);
+        cursor: pointer;
+    }
+
+    &:active {
+        opacity: var(--activeOpacity);
+    }
+
 }
 
 

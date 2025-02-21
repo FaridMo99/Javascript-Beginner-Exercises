@@ -64,14 +64,15 @@ squareArray.forEach(element => {
 
   element.addEventListener('click', (e) => {
     let yourSymbol = document.querySelector('input[name="symbol"]:checked').value;
-    
-    if(circle) {
- 
+
+    e.target.classList.remove("hover")
     e.target.innerHTML = `<img src="${yourSymbol}.svg" alt="${yourSymbol}">`;
-    
-}  
+
+    });
 });
-});
+
+    //computer algorithm
+
 
 //features to implement
     //name input
