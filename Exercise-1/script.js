@@ -7,7 +7,12 @@ const onePlayer = document.querySelector("#one")
 const twoPlayers = document.getElementById("two")
 const opponentNameDiv = document.querySelector(".opponentName")
 const buttonAmountOpponents = document.querySelector(".opp")
-
+const playerSymbol = document.querySelector(".playerSymbol")
+const opponentSymbol = document.querySelector(".opponentSymbol")
+let opponentName = document.querySelector(".opponentNameInput")
+let opponentNameInput = document.querySelector("#opponentName")
+let playerNameInput = document.querySelector("#username")
+let playerName = document.querySelector(".playerName")
 
 function isFormValid(a) {
     return a.checkValidity();
@@ -19,6 +24,7 @@ closeModal.addEventListener('click', (e) => {
     if (isFormValid(form)) {
         modal.style.display = 'none';
         playerAmountForm.classList.toggle("secondHidden")
+        playerName.innerHTML = playerNameInput.value
     } 
 
     else {
@@ -31,11 +37,11 @@ playerAmountForm.addEventListener("click", (e) => {
 
     if(e.target.type === "radio"){
 
-    if(isFormValid(onePlayer) && !opponentNameDiv.classList.contains("thirdHidden")) {
+    if(onePlayer.checked) {
         opponentNameDiv.classList.add("thirdHidden")
     }
 
-    else if (isFormValid(twoPlayers) && opponentNameDiv.classList.contains("thirdHidden")) {
+    else if (twoPlayers.checked) {
         opponentNameDiv.classList.remove("thirdHidden")
     }
 
@@ -45,12 +51,18 @@ playerAmountForm.addEventListener("click", (e) => {
 buttonAmountOpponents.addEventListener("click", (e) => {
     e.preventDefault()
 
-    if(isFormValid(onePlayer)) {
+    if(onePlayer.checked) {
         playerAmountForm.classList.toggle("secondHidden")
+        opponentName.textContent = "Computer"
     }
 
-    else if(isFormValid(twoPlayers) && isFormValid()) {
+    else if(twoPlayers.checked && opponentName !== undefined) {
         playerAmountForm.classList.toggle("secondHidden")
+        opponentName.textContent = opponentNameInput.value
+    }
+
+    else {
+        alert("Player 2 has to choose a Name")
     }
 })
 
@@ -75,10 +87,13 @@ squareArray.forEach(element => {
 
 
 //features to implement
-    //name input
     //choosing how many rounds between 1/3/5
         //scoreBoard when more than one round
     //playing against computer
     //reset Button
     //popUp when game over with button wanna play again?
     //function for 2 players or against computer
+
+//bugs 
+    //can proceed when choosing two players and having empty input
+    
