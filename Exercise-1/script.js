@@ -112,6 +112,8 @@ function playGame(e) {
         setTimeout(computer, 1000);
     }
 
+    if (gameOver()) return;
+
 }
 
 squareArray.forEach(element => {
@@ -120,45 +122,84 @@ squareArray.forEach(element => {
 });
 
     //computer algorithm
-function computer() {
-    let playerSymbol = document.querySelector("input[name='symbol']:checked").value
-    let opponentSymbol = playerSymbol == "circle" ? "cross" : "circle"
-
-    if(changeSymbol % 2 == 0) {
-        return
+    function computer() {
+        let playerSymbol = document.querySelector("input[name='symbol']:checked").value;
+        let opponentSymbol = playerSymbol === "circle" ? "cross" : "circle";
+    
+        if (changeSymbol % 2 === 0 || gameOver()) { 
+            return;
+        }
+    
+        const emptySquares = Array.from(squareArray).filter(square => square.innerHTML === "");
+    
+        if (emptySquares.length === 0) {
+            return;
+        }
+    
+        const randomSquare = emptySquares[Math.floor(Math.random() * emptySquares.length)];
+    
+        randomSquare.innerHTML = `<img src="${opponentSymbol}.svg" alt="${opponentSymbol}">`;
+        randomSquare.removeEventListener("click", playGame);
+        randomSquare.classList.remove("hover");
+        changeSymbol++;
+    
+        gameOver();
     }
-
-    const emptySquares = Array.from(squareArray).filter(square => square.innerHTML === "");
-
-    if (emptySquares.length === 0) {
-        return;
-    }
- 
-    const randomSquare = emptySquares[Math.floor(Math.random() * emptySquares.length)];
-
-    randomSquare.innerHTML = `<img src="${opponentSymbol}.svg" alt="${opponentSymbol}">`;
-    randomSquare.removeEventListener("click", playGame);
-    changeSymbol++;
-}
 
     //algorithm for deciding winner
 let winnerPopup = document.querySelector(".scoreboard")
 let winnerText = document.querySelector(".winnerText")
 
 function gameOver() {
-    let playerSymbol = document.querySelector("input[name='symbol']:checked").value
-    let opponentSymbol = playerSymbol == "circle" ? "cross" : "circle"
+    let playerSymbol = document.querySelector("input[name='symbol']:checked").value;
+    let opponentSymbol = playerSymbol === "circle" ? "cross" : "circle";
 
-    const squareNodelistAsArray = Array.from(squareArray)
-    const winningCombinations = [[0, 1, 2], [3, 4, 5],
-                                 [6, 7, 8], [1, 4, 7],
-                                 [2, 5, 8], [3, 6, 9],
-                                 [1, 5, 9], [3, 5, 7]]
-    
-    
-    
+    const squareNodelistAsArray = Array.from(squareArray);
+    const winningCombinations = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+        [0, 4, 8], [2, 4, 6]
+    ];
 
-    winnerPopup.classList.toggle("hidden")
+    for (let combination of winningCombinations) {
+        const [a, b, c] = combination;
+
+        let symbolA = squareNodelistAsArray[a].innerHTML.trim();
+        let symbolB = squareNodelistAsArray[b].innerHTML.trim();
+        let symbolC = squareNodelistAsArray[c].innerHTML.trim();
+
+        if (symbolA !== "" && symbolA === symbolB && symbolB === symbolC) {
+    
+            let winnerName = symbolA.includes(playerSymbol) ? playerNameInput.value : opponentName.textContent;
+
+            squareArray.forEach(square => {
+                square.style.pointerEvents = "none";
+            });
+
+
+            combination.forEach(index => {
+                squareNodelistAsArray[index].classList.add("big");
+            });
+
+        
+            setTimeout(() => {
+                winnerPopup.classList.remove("hidden");
+                winnerText.textContent = `${winnerName} Won!`;
+            }, 2000);
+
+            return true;
+        }
+    }
+
+    if ([...squareArray].every(square => square.innerHTML !== "")) {
+        setTimeout(() => {
+            winnerPopup.classList.remove("hidden");
+            winnerText.textContent = "It's a draw!";
+        }, 2000);
+        return true;
+    }
+
+    return false;
 }
 
 
@@ -169,21 +210,26 @@ const textInput = document.querySelectorAll("input[type='text']")
 
 function restart() {
     modal.style.display = 'inherit';
-    playerName.innerHTML = ""
-    opponentName.innerHTML = ""
-    playerSymbolDiv.innerHTML = ""
-    opponentSymbolDiv.innerHTML = ""
-    changeSymbol = 0
+    playerName.innerHTML = "";
+    opponentName.innerHTML = "";
+    playerSymbolDiv.innerHTML = "";
+    opponentSymbolDiv.innerHTML = "";
+    changeSymbol = 0;
 
     textInput.forEach((element) => {
-        element.value = ""
-    })
-    squareArray.forEach((e) => {
-        e.innerHTML = ""
-        e.classList.add("hover")
-        e.addEventListener('click', playGame);
-    })
+        element.value = "";
+    });
 
+    squareArray.forEach((e) => {
+        e.innerHTML = "";
+        e.classList.add("hover");
+        e.classList.remove("big");
+        e.style.pointerEvents = "auto";
+        e.addEventListener("click", playGame);
+    });
+
+    winnerPopup.classList.add("hidden");
+    winnerText.textContent = "";
 }
 
 restartBtn.addEventListener("click", () => {
@@ -196,11 +242,3 @@ playAgainBtn.addEventListener("click", () => {
     restart();
 })
     
-
-
-
-//features to implement
-    //winner algortihm
-    //winner text
-
-
