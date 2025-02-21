@@ -49,7 +49,7 @@ p, label {
     gap:2vw;
     align-items:center;
 
-    .player, .computer {
+    .player, .opponent {
         background-color: var(--lightGrey);
         width:30%;
         height:100%;
@@ -68,7 +68,7 @@ p, label {
 
 }
 
-.playerName, .computerName {
+.playerName, .opponentNameInput {
     height: 35%;
     width: 100%;
     background-color: var(--superDarkGrey);
@@ -78,7 +78,7 @@ p, label {
     align-items: center;
 }
 
-.playerSymbol, .computerSymbol {
+.playerSymbol, .opponentSymbol {
     height: 65%;
     width: 100%;
     display: flex;
@@ -225,7 +225,7 @@ p, label {
     align-items: center;
 }
 
-.form {
+form {
     width: 50vw;
     height:30vh;
     display: flex;
@@ -263,4 +263,18 @@ input[type="text"] {
 
 #symbol {
     width: 3vw;
+}
+
+.opponentName {
+    margin-top: 2vh;
+    margin-bottom: 4vh;
+    width: 40%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.secondHidden, .thirdHidden {
+    display: none;
 }

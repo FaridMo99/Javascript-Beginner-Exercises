@@ -28,14 +28,30 @@
         <button type="submit" data-close-modal class="submit btn">Submit</button>
     </form>
     </div>
+    <div class="formContainer secondHidden playerAmount">
+        <form action="" class="form">
+            <h4>How many Players?</h4>
+            <label>1
+            <input type="radio" name="players"  id ="one" checked value="one"reqired>
+            </label>
+            <label>2
+            <input type="radio" name="players" id="two" value="two" required>
+            </label>
+            <div class="opponentName thirdHidden">
+                <label for="opponentName">Name:</label>
+                <input type="text" name="opponentName" id="opponentName" required >
+            </div>
+            <button class="btn opp">Submit</button>
+        </form>
+    </div>
     <div class="playerContainer">
         <div class="player">
             <p class="playerName"></p>
             <div class="playerSymbol"></div>
         </div>
-        <div class="computer">
-            <p class="computerName"></p>
-            <div class="computerSymbol"></div>
+        <div class="opponent">
+            <p class="opponentNameInput"></p>
+            <div class="opponentSymbol"></div>
         </div>
     </div>
     <div class="gameContainer">
@@ -56,8 +72,8 @@
             <div class="yourScore"></div>
         </div>
         <div>
-            <p>Computer Score:</p>
-            <div class="computerScore"></div>
+            <p>Opponent Score:</p>
+            <div class="opponentScore"></div>
         </div>
     </div>
 </body>
