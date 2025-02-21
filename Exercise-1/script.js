@@ -133,13 +133,17 @@ function computer() {
 }
 
     //algorithm for deciding winner
+let winnerPopup = document.querySelector(".scoreboard")
+
 function gameOver() {
     const squareArrayAsArray = Array.from(squareArray)
+    winnerPopup.classList.toggle("hidden")
 }
 
 
     //restart button
 const restartBtn = document.querySelector(".reset-btn")
+const playAgainBtn = document.querySelector(".playAgainBtn")
 const textInput = document.querySelectorAll("input[type='text']")
 
 function restart() {
@@ -163,6 +167,11 @@ function restart() {
 
 restartBtn.addEventListener("click", () => {
     restart();
+})
+
+playAgainBtn.addEventListener("click", () => {
+    restart();
+    winnerPopup.classList.toggle("hidden")
 })
     
 
