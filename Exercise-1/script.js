@@ -100,6 +100,15 @@ function playGame(e) {
     e.target.removeEventListener("click", playGame);
    
     if (changeSymbol % 2 != 0 && onePlayer.checked) {
+        squareArray.forEach(element => {
+            element.style.pointerEvents = "none";
+          });
+          setTimeout(() => {
+            squareArray.forEach(element => {
+              element.style.pointerEvents = "";
+            });
+          }, 1000);
+        
         setTimeout(computer, 1000);
     }
 
@@ -134,9 +143,21 @@ function computer() {
 
     //algorithm for deciding winner
 let winnerPopup = document.querySelector(".scoreboard")
+let winnerText = document.querySelector(".winnerText")
 
 function gameOver() {
-    const squareArrayAsArray = Array.from(squareArray)
+    let playerSymbol = document.querySelector("input[name='symbol']:checked").value
+    let opponentSymbol = playerSymbol == "circle" ? "cross" : "circle"
+
+    const squareNodelistAsArray = Array.from(squareArray)
+    const winningCombinations = [[0, 1, 2], [3, 4, 5],
+                                 [6, 7, 8], [1, 4, 7],
+                                 [2, 5, 8], [3, 6, 9],
+                                 [1, 5, 9], [3, 5, 7]]
+    
+    
+    
+
     winnerPopup.classList.toggle("hidden")
 }
 
@@ -170,15 +191,16 @@ restartBtn.addEventListener("click", () => {
 })
 
 playAgainBtn.addEventListener("click", () => {
-    restart();
     winnerPopup.classList.toggle("hidden")
+    winnerText.textContent = ""
+    restart();
 })
     
 
 
 
 //features to implement
-    //popUp when game over with button wanna play again?
-    //fix layout issues
+    //winner algortihm
+    //winner text
 
 
