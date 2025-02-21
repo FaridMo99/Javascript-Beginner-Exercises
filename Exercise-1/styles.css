@@ -121,6 +121,11 @@ p, label {
         &:active {
             opacity: var(--activeOpacity);
         }
+
+        img {
+            width: 80%;
+            height: 80%;
+        }
     }
 
     .a {
@@ -261,7 +266,7 @@ input[type="text"] {
     font-weight: bold;
 }
 
-#symbol {
+#circle, #cross {
     width: 3vw;
 }
 

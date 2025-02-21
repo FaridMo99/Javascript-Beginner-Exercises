@@ -1,4 +1,4 @@
-//close pop up, show second pop up and add name and symbol
+//close pop up, show second pop up and add name
 const closeModal = document.querySelector("[data-close-modal]")
 const modal = document.querySelector("[data-modal]")
 const form = document.querySelector(".form")
@@ -55,11 +55,25 @@ buttonAmountOpponents.addEventListener("click", (e) => {
 })
 
 
+//playing Game
 
+    //choosing your Symbol and playing with it
+const squareArray = document.querySelectorAll(".sq")
 
+squareArray.forEach(element => {
+
+  element.addEventListener('click', (e) => {
+    let yourSymbol = document.querySelector('input[name="symbol"]:checked').value;
+    
+    if(circle) {
+ 
+    e.target.innerHTML = `<img src="${yourSymbol}.svg" alt="${yourSymbol}">`;
+    
+}  
+});
+});
 
 //features to implement
-    //choosing your symbol
     //name input
     //choosing how many rounds between 1/3/5
         //scoreBoard when more than one round
