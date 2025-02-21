@@ -76,35 +76,67 @@ submitButtonAmountOpponents.addEventListener("click", (e) => {
 
     //choosing your Symbol and playing with it
 const squareArray = document.querySelectorAll(".sq")
+let changeSymbol = 0
+
+function playGame(e) {
+    if(e.target.innerHTML !== ""){
+        return;
+    }
+
+    let playerSymbol = document.querySelector("input[name='symbol']:checked").value
+    let opponentSymbol = playerSymbol == "circle" ? "cross" : "circle"
+
+    e.target.classList.remove("hover")
+
+    if (changeSymbol % 2 == 0){
+    e.target.innerHTML = `<img src="${playerSymbol}.svg" alt="${playerSymbol}">`;
+    changeSymbol++
+    }
+ 
+    else if (changeSymbol % 2 != 0){
+    e.target.innerHTML = `<img src="${opponentSymbol}.svg" alt="${opponentSymbol}">`
+    changeSymbol++
+    }
+    e.target.removeEventListener("click", playGame);
+   
+    if (changeSymbol % 2 != 0 && onePlayer.checked) {
+        setTimeout(computer, 1000);
+    }
+
+}
 
 squareArray.forEach(element => {
 
-  element.addEventListener('click', (e) => {
-    let playerSymbol = document.querySelector("input[name='symbol']:checked").value
-
-    e.target.classList.remove("hover")
-    e.target.innerHTML = `<img src="${playerSymbol}.svg" alt="${playerSymbol}">`;
-
-    });
+  element.addEventListener('click', playGame);
 });
 
-    //player 2 algorithm
-
-
     //computer algorithm
+function computer() {
+    let playerSymbol = document.querySelector("input[name='symbol']:checked").value
+    let opponentSymbol = playerSymbol == "circle" ? "cross" : "circle"
 
-
-
-    //algorithm for game pattern when choosing 1 or 2 player
-function playGame() {
-    if (onePlayer) {
-
+    if(changeSymbol % 2 == 0) {
+        return
     }
 
-    else if (twoPlayers) {
+    const emptySquares = Array.from(squareArray).filter(square => square.innerHTML === "");
 
+    if (emptySquares.length === 0) {
+        return;
     }
+ 
+    const randomSquare = emptySquares[Math.floor(Math.random() * emptySquares.length)];
+
+    randomSquare.innerHTML = `<img src="${opponentSymbol}.svg" alt="${opponentSymbol}">`;
+    randomSquare.removeEventListener("click", playGame);
+    changeSymbol++;
 }
+
+    //algorithm for deciding winner
+function gameOver() {
+    const squareArrayAsArray = Array.from(squareArray)
+}
+
 
     //restart button
 const restartBtn = document.querySelector(".reset-btn")
@@ -116,12 +148,15 @@ function restart() {
     opponentName.innerHTML = ""
     playerSymbolDiv.innerHTML = ""
     opponentSymbolDiv.innerHTML = ""
+    changeSymbol = 0
 
     textInput.forEach((element) => {
         element.value = ""
     })
     squareArray.forEach((e) => {
         e.innerHTML = ""
+        e.classList.add("hover")
+        e.addEventListener('click', playGame);
     })
 
 }
