@@ -194,7 +194,7 @@ function gameOver() {
     if ([...squareArray].every(square => square.innerHTML !== "")) {
         setTimeout(() => {
             winnerPopup.classList.remove("hidden");
-            winnerText.textContent = "It's a draw!";
+            winnerText.textContent = "Draw!";
         }, 2000);
         return true;
     }
