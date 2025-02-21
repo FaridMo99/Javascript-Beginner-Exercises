@@ -169,7 +169,7 @@ restartBtn.addEventListener("click", () => {
 
 
 //features to implement
-    //playing against computer
     //popUp when game over with button wanna play again?
+    //fix layout issues
 
 
