@@ -68,7 +68,7 @@ dialog button {
     font-weight: bold;
     border: none;
     border-radius: 1vw;
-    padding: 6px;
+    padding: 6px 22px;
 
     &:hover {
         transform: scale(1.02);
@@ -117,8 +117,9 @@ main {
         > * {
             height: 100%;
             width: 10%;
-            background-color: grey;
-            box-shadow: inset 0 0 1vw 0.2vw rgb(0, 0, 0);
+            background-color: white;
+            border: none;
+            box-shadow: inset 0 0 2vw 0.2vw rgb(0, 0, 0);
             cursor: pointer;
             transition: 0.3s ease-in-out;
 
