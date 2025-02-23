@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Book cover -->
+  <rect x="30" y="40" width="140" height="120" fill="#8b4513" stroke="black" stroke-width="3" />
+  <!-- Pages -->
+  <rect x="35" y="45" width="130" height="110" fill="white" stroke="black" stroke-width="2" />
+  <!-- Spine -->
+  <rect x="30" y="40" width="5" height="120" fill="#6b3f2b" />
+  <!-- Book lines (pages) -->
+  <line x1="35" y1="60" x2="165" y2="60" stroke="black" stroke-width="1" />
+  <line x1="35" y1="80" x2="165" y2="80" stroke="black" stroke-width="1" />
+  <line x1="35" y1="100" x2="165" y2="100" stroke="black" stroke-width="1" />
+  <line x1="35" y1="120" x2="165" y2="120" stroke="black" stroke-width="1" />
+</svg>
