@@ -32,10 +32,6 @@ let domHandler = {
 }
 
 
-
-
-
-
 function isFormValid(a) {
     return a.checkValidity();
 }
