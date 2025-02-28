@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <dialog class="formDialog">
+            <form action="" method="post">
+                <p>Choose the Size of your Game:</p>
+                <div class="radioGroup">
+                <label for="size20">
+                    <input type="radio" name="gridSize" id="size20" value="20" required checked> Small
+                </label>
+            
+                <label for="size30">
+                    <input type="radio" name="gridSize" id="size30" value="30" required> Medium
+                </label>
+            
+                <label for="size40">
+                    <input type="radio" name="gridSize" id="size40" value="40" required> Large
+                </label>
+                </div>
+                <button type="submit" class="enterGridSizeBtn">Enter</button>
+            </form>
+        </dialog>
+    </header>
+    <main>
+        <div class="containerScore">
+            <p class="score"></p>
+        </div>
+        <div class="rows">
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+        </div>
+        <div class="rows">
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+        </div>
+        <div class="rows">
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+        </div>
+        <div class="rows">
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+        </div>
+        <div class="rows30 hidden">
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+        </div>
+        <div class="rows30 hidden">
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+        </div>
+        <div class="rows40 hidden">
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+        </div>
+        <div class="rows40 hidden">
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+            <div class="cells"></div>
+        </div>
+    </main>
+    <footer>
+        <button type="submit" class="restartBtn">Restart</button>
+        <button type="submit" class="openGridChangeBtn">Change Grid</button>
+    </footer>
+</body>
+</html>
