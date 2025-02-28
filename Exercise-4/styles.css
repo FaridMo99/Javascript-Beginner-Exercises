@@ -146,6 +146,10 @@ main {
                 transform: scale(1.05);
                 cursor: pointer;
             }
+
+            &:active {
+                transform: skew(15deg);
+            }
         }
     }
 
@@ -163,6 +167,7 @@ main {
         width: 70%;
         height: 70%;
         position: absolute;
+        visibility: visible !important;
     }
     &::before {
         content:"";
