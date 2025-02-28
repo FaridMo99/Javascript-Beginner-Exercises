@@ -17,10 +17,6 @@ body {
     overflow: hidden;
 }
 
-.hidden {
-    display:none;
-}
-
 p {
     margin: 0;
 }
@@ -161,14 +157,17 @@ main {
     justify-content: center;
     align-items: center;
     position: relative;
+    box-shadow: inset 0 0 10px 3px rgba(0, 0, 0, 0.462);
 
     >* {
-        width: 60%;
-        height: 60%;
+        width: 70%;
+        height: 70%;
+        position: absolute;
     }
     &::before {
         content:"";
         background-color: var(--green);
+        box-shadow: inset 0 0 30px 5px white;
         width: 80%;
         height: 80%;
         border-radius: inherit;
@@ -215,3 +214,6 @@ footer {
     }
 }
 
+.hidden {
+    display:none;
+}
