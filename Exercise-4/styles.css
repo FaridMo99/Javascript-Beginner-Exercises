@@ -127,7 +127,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 12px;
     margin-bottom: 5vh;
     margin-top: 2vh;
 
@@ -135,7 +135,7 @@ main {
         height: 12.5%;
         width: 70%;
         flex:auto;
-        gap: 5px;
+        gap: 12px;
         display: flex;
 
         >* {
