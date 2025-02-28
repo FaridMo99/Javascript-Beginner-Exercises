@@ -67,17 +67,6 @@ function updateScore(score, combinations) {
     }
 }
 
-//features 
-    //counter for right combinations/missing combinations
-    //flipping cards
-        //first card stays flipped 
-            // if second card matches then both cards removed and add one to points
-
-    //if all cards right  add to score you won and firework animation
-    //restart and change grid button
-        //restart keeps grid but deletes everything else
-        //change grid deletes everything
-
 
 function shuffleArray(arrayy) {
     let array = Array.from(arrayy)
@@ -117,3 +106,39 @@ function placeSvg(lengthToCut) {
 }
 
 
+//features 
+    //if all cards right  add to score you won and firework animation
+    //restart and change grid button
+        //restart keeps grid but deletes everything else
+        //change grid deletes everything
+
+
+    //flipping cards
+        // first card stays flipped 
+        // if second card matches then both cards stay invisible
+        // removed and add one to points
+
+function flipCards() {
+    let firstCard;
+    let secondCard;
+
+    let hiddenOne = firstCard.style.visibility = "hidden"
+    let hiddenTwo = secondCard.style.visibility = "hidden"
+
+    let firstSymbol;
+    let secondSymbol;
+
+    let score = 0
+
+    if (firstCard === secondCard) {
+        score++
+        updateScore(score)
+    }
+
+    else if (firstSymbol !== secondSymbol && hiddenOne === hiddenTwo) {
+        firstCard.style.visibility = "visible"
+        secondCard.style.visibility = "visible"
+        firstCard.style.pointerEvents = "auto" 
+        secondCard.style.pointerEvents = "auto" 
+    }
+}
