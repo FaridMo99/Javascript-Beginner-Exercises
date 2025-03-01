@@ -19,6 +19,7 @@ body {
 
 p {
     margin: 0;
+    text-align: center;
 }
 
 /*main styles*/
@@ -249,4 +250,8 @@ footer {
 
 .hidden {
     display:none;
+}
+
+.invisible {
+    visibility: hidden;
 }
