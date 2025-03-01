@@ -9,26 +9,29 @@ let svgs = document.querySelectorAll("img")
 
 let scoreboard = document.querySelector(".containerScore")
 
+let flipPairsMessageContainer = document.querySelector(".correctFalseWinnerMessage")
+let flipPairsMessage = document.querySelector(".message")
+
+let restartBtn = document.querySelector(".restartBtn")
 //modal closing and gridSize 
 
 modalButton.addEventListener("click", (e) => {
     let gridSize = document.querySelector("input[type='radio']:checked");
    
     e.preventDefault();
-    modal.classList.toggle("hidden");
+    modal.classList.add("hidden");
 
     if (gridSize.value === "20") {
         nodeListToArrayAndLoop(allCells, "addEventListener")
-        placeSvg(10);
         updateScore(0, 10);
+        placeSvg(10);
     }
 
     else if (gridSize.value === "30"){
         nodeListToArrayAndLoop(allCells, "addEventListener")
         nodeListToArrayAndLoop(rows30, "remove");
-        placeSvg(5);
         updateScore(0, 15);
-
+        placeSvg(5);
     }
 
     else if (gridSize.value === "40") {
@@ -40,11 +43,12 @@ modalButton.addEventListener("click", (e) => {
     }
 })
 
+//array functions
 function nodeListToArrayAndLoop(list, loopAction){
     let arr = Array.from(list)
 
     arr.forEach(element => {
-        if(loopAction === "remove") {
+        if(loopAction === "remove" || loopAction === "add") {
         element.classList[loopAction]('hidden');
         }
 
@@ -59,14 +63,6 @@ function nodeListToArrayAndLoop(list, loopAction){
     })
 }
 
-function updateScore(score, combinations) {
-    scoreboard.innerHTML = `${score}/${combinations}`
-
-    if(score === combinations) {
-        scoreboard.innerHTML += " You Won!"
-    }
-}
-
 
 function shuffleArray(arrayy) {
     let array = Array.from(arrayy)
@@ -75,7 +71,6 @@ function shuffleArray(arrayy) {
         const j = Math.floor(Math.random() * (i + 1));        
         [array[i], array[j]] = [array[j], array[i]];
     }
-
     return array
 }
 
@@ -84,27 +79,41 @@ function cutAndDupedArray(lengthToCut) {
     let dupedArray = []
 
     randomizedArray.splice(0, lengthToCut);
-
     randomizedArray.forEach(item => {
-        dupedArray.push(item, item);
+        let itemAsString = item.outerHTML
+        dupedArray.push(itemAsString, itemAsString);
     });
-
     return shuffleArray(dupedArray);
 }
 
 function placeSvg(lengthToCut) {
     let shuffledDupedArray = cutAndDupedArray(lengthToCut);
-    let index = 0
+    let index = 0;
 
     allCells.forEach((cell) => {
         let svg = shuffledDupedArray[index];
-        cell.innerHTML = svg.outerHTML
-        console.log(svg)
+        cell.innerHTML = svg
         index++
     });
 
 }
 
+
+function updateScore(score, combinations) {
+    scoreboard.innerHTML = `${score}/${combinations}`
+
+    if(score === combinations && typeof(score) == "number") {
+
+        scoreboard.innerHTML += " You Won!"
+
+        flipPairsMessageContainer.classList.remove("hidden")
+
+        setTimeout(() => {
+            flipPairsMessageContainer.classList.add("hidden")
+        }, 2000)
+        flipPairsMessage.innerHTML = "You Won!!"
+    }
+}
 
 //features 
     //if all cards right  add to score you won and firework animation
@@ -131,8 +140,21 @@ function flipCards() {
     let score = 0
 
     if (firstCard === secondCard) {
+        flipPairsMessageContainer.classList.remove("hidden")
+        setTimeout(() => {
+            flipPairsMessageContainer.classList.add("hidden")
+        }, 2000)
+        flipPairsMessage.innerHTML = "Correct <img src='svgDirectory/correct.svg'>"
         score++
         updateScore(score)
+    }
+
+    else if (firstCard !== secondCard) {
+        flipPairsMessageContainer.classList.remove("hidden")
+        setTimeout(() => {
+            flipPairsMessageContainer.classList.add("hidden")
+        }, 2000)
+        flipPairsMessage.innerHTML = "Wrong <img src='svgDirectory/wrong.svg'>"
     }
 
     else if (firstSymbol !== secondSymbol && hiddenOne === hiddenTwo) {
@@ -142,3 +164,16 @@ function flipCards() {
         secondCard.style.pointerEvents = "auto" 
     }
 }
+
+
+//button restart change grid
+
+restartBtn.addEventListener("click", () => {
+    nodeListToArrayAndLoop(allCells, "addEventListener")
+    nodeListToArrayAndLoop(rows30, "add");
+    nodeListToArrayAndLoop(rows40, "add");
+    placeSvg("");
+    updateScore("", "");
+    modal.classList.remove("hidden");
+
+})
