@@ -1,36 +1,18 @@
 //close pop up, show second pop up and add name
-let gameboard = {
-    grid: document.querySelectorAll(".sq"),// known previously as squareArray
-}
-let players = {
-    onePlayer: document.querySelector("#one"),
-    twoPlayers: document.getElementById("two"),
-    opponentNameDiv: document.querySelector(".opponentName"),
-    submitButtonAmountOpponents: document.querySelector(".opp"),
-    playerSymbolDiv: document.querySelector(".playerSymbol"),
-    opponentSymbolDiv: document.querySelector(".opponentSymbol"),
-    opponentName: document.querySelector(".opponentNameInput"),
-    opponentNameInput: document.querySelector("#opponentName"),
-    playerNameInput: document.querySelector("#username"),
-    playerName: document.querySelector(".playerName"),
-}
-let game = {
-    changeSymbol: 0,
-}
-let domHandler = {
-    modals: {
-        closeModal: document.querySelector("[data-close-modal]"),
-        modal: document.querySelector("[data-modal]"),
-        form: document.querySelector(".form"),
-        playerAmountForm : document.querySelector(".playerAmount"),
-        winnerPopup: document.querySelector(".scoreboard"),
-        winnerText: document.querySelector(".winnerText"),
-        playAgainBtn: document.querySelector(".playAgainBtn"),
-        textInput: document.querySelectorAll("input[type='text']"),
-        restartBtn: document.querySelector(".reset-btn"),
-    },
-}
-
+const closeModal = document.querySelector("[data-close-modal]")
+const modal = document.querySelector("[data-modal]")
+const form = document.querySelector(".form")
+const playerAmountForm = document.querySelector(".playerAmount")
+const onePlayer = document.querySelector("#one")
+const twoPlayers = document.getElementById("two")
+const opponentNameDiv = document.querySelector(".opponentName")
+const submitButtonAmountOpponents = document.querySelector(".opp")
+const playerSymbolDiv = document.querySelector(".playerSymbol")
+const opponentSymbolDiv = document.querySelector(".opponentSymbol")
+let opponentName = document.querySelector(".opponentNameInput")
+let opponentNameInput = document.querySelector("#opponentName")
+let playerNameInput = document.querySelector("#username")
+let playerName = document.querySelector(".playerName")
 
 function isFormValid(a) {
     return a.checkValidity();
@@ -93,7 +75,8 @@ submitButtonAmountOpponents.addEventListener("click", (e) => {
 //playing Game
 
     //choosing your Symbol and playing with it
-
+const squareArray = document.querySelectorAll(".sq")
+let changeSymbol = 0
 
 function playGame(e) {
     if(e.target.innerHTML !== ""){
@@ -164,6 +147,9 @@ squareArray.forEach(element => {
     }
 
     //algorithm for deciding winner
+let winnerPopup = document.querySelector(".scoreboard")
+let winnerText = document.querySelector(".winnerText")
+
 function gameOver() {
     let playerSymbol = document.querySelector("input[name='symbol']:checked").value;
     let opponentSymbol = playerSymbol === "circle" ? "cross" : "circle";
@@ -218,6 +204,10 @@ function gameOver() {
 
 
     //restart button
+const restartBtn = document.querySelector(".reset-btn")
+const playAgainBtn = document.querySelector(".playAgainBtn")
+const textInput = document.querySelectorAll("input[type='text']")
+
 function restart() {
     modal.style.display = 'inherit';
     playerName.innerHTML = "";
